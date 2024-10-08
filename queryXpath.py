@@ -25,10 +25,11 @@ def execute_xpath_query(file_path, xpath_query):
         print(f"Errore nell'eseguire la query XPath: {e}")
 
 # Esempio di utilizzo
-file_path = 'sources/' + 'html-2410.04936.html'                 # Sostituisci con il percorso del tuo file
+file_path = 'sources/' + 'html-2410.04936.html' 
 query_id        = '//table[@id="S2.T1.1"]/ancestor::figure/@id'
 query_caption   = '//table[@id="S2.T1.1"]/ancestor::figure//figcaption/text()'
 query_table     = '//table[@id="S2.T1.1"]/ancestor::figure//table'   
+query_footnotes = '//table[@id="S2.T1.1"]/ancestor::figure//sup/text()'   
            
 
 
@@ -38,6 +39,8 @@ print("-------------------------------------------------------------------------
 execute_xpath_query(file_path, query_table)
 print("--------------------------------------------------------------------------------------")
 id= execute_xpath_query(file_path, query_id)
-query_references= f"//*[substring(@href, string-length(@href) - string-length('#{id}') + 1) = '#{id}']/ancestor::section/*[position() = 1]"    
+query_references= f"//*[substring(@href, string-length(@href) - string-length('#{id}') + 1) = '#{id}']/ancestor::p/text()"    
 print("--------------------------------------------------------------------------------------")
 execute_xpath_query(file_path, query_references)
+print("--------------------------------------------------------------------------------------")
+execute_xpath_query(file_path, query_footnotes)
