@@ -21,7 +21,11 @@ def execute_xpath_query(file_path, xpath_query):
 # Funzione per processare tutti i file HTML nella cartella 'sources' e salvare i risultati in un dizionario
 def process_all_html_files():
     folder_path = 'sources'
-    all_results = {}  # Dizionario per memorizzare i risultati di tutti i file HTML
+    extraction_path = 'extractions'  # Cartella per i file JSON
+
+    # Crea la cartella 'extractions' se non esiste
+    if not os.path.exists(extraction_path):
+        os.makedirs(extraction_path)
     
     # Iterare sui file nella cartella 'sources'
     for file_name in sorted(os.listdir(folder_path)):
@@ -51,8 +55,6 @@ def process_all_html_files():
                 print(f"Processando ID: {table_id}")
 
                 # 2. Query dinamiche basate sull'ID
-                
-                # raccolta dell'ID della figura
                 query_figureID = f'//table[@id="{table_id}"]/ancestor::figure/@id'
                 figure_id = execute_xpath_query(file_path, query_figureID) or []
                 
@@ -60,36 +62,25 @@ def process_all_html_files():
                 query_table = f'//table[@id="{table_id}"]/ancestor::figure//table'
                 query_footnotes = f'//table[@id="{table_id}"]/ancestor::figure//sup/text()'
                 
-                # se esiste un ID di figura, cerca le references usando tale id, altrimenti esegui la query con la lista vuota
                 if(figure_id):
                     query_references = f"//*[substring(@href, string-length(@href) - string-length('#{figure_id[0]}') + 1) = '#{figure_id[0]}']/ancestor::p" 
                 else:
                     query_references = f"//*[substring(@href, string-length(@href) - string-length('#{figure_id}') + 1) = '#{figure_id}']/ancestor::p" 
-                #print('query_references: ', query_references)
-            
-                
-                # Eseguire le query e raccogliere i risultati
-                
+
                 caption_results = execute_xpath_query(file_path, query_caption) or []
                 table_results = execute_xpath_query(file_path, query_table) or []
                 footnote_results = execute_xpath_query(file_path, query_footnotes) or []
                 reference_results_raw = execute_xpath_query(file_path, query_references) or []
-                
-                # conversione delle references in stringhe
+
                 reference_results = []
                 for elem in reference_results_raw:
-                    # Converti l'elemento in stringa e decodifica se necessario
                     reference_results.append(etree.tostring(elem, pretty_print=True).decode("utf-8"))
-                
-                #print('reference_results: ', reference_results)
 
-                # Convertire i risultati della tabella in formato HTML
                 if table_results:
                     table_html = ''.join([etree.tostring(result, pretty_print=True).decode() for result in table_results])
                 else:
                     table_html = None
 
-                # Creare un dizionario per i risultati di questo ID
                 file_results[table_id] = {
                     "caption": ' '.join(caption_results) if caption_results else None,
                     "table": table_html,
@@ -97,14 +88,15 @@ def process_all_html_files():
                     "references": reference_results
                 }
 
-            # Aggiungere i risultati di questo file al dizionario generale
-            all_results[file_name] = file_results
+            # Creare il nome del file JSON in base al file HTML
+            json_file_name = os.path.splitext(file_name)[0] + '.json'
+            json_file_path = os.path.join(extraction_path, json_file_name)
 
-    # Salva i risultati in un file JSON
-    with open('table_results.json', 'w', encoding='utf-8') as json_file:
-        json.dump(all_results, json_file, ensure_ascii=False, indent=4)
-    
-    print("\nRisultati salvati nel file 'table_results.json'.")
+            # Salva i risultati in un file JSON specifico per il file HTML corrente
+            with open(json_file_path, 'w', encoding='utf-8') as json_file:
+                json.dump(file_results, json_file, ensure_ascii=False, indent=4)
+
+            print(f"Risultati salvati nel file '{json_file_name}' nella cartella 'extractions'.")
 
 # Eseguire il ciclo su tutti i file HTML
 process_all_html_files()
