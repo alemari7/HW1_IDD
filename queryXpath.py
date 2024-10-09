@@ -51,16 +51,37 @@ def process_all_html_files():
                 print(f"Processando ID: {table_id}")
 
                 # 2. Query dinamiche basate sull'ID
+                
+                # raccolta dell'ID della figura
+                query_figureID = f'//table[@id="{table_id}"]/ancestor::figure/@id'
+                figure_id = execute_xpath_query(file_path, query_figureID) or []
+                
                 query_caption = f'//table[@id="{table_id}"]/ancestor::figure//figcaption/text()'
                 query_table = f'//table[@id="{table_id}"]/ancestor::figure//table'
                 query_footnotes = f'//table[@id="{table_id}"]/ancestor::figure//sup/text()'
-                query_references = f"//*[substring(@href, string-length(@href) - string-length('#{table_id}') + 1) = '#{table_id}']/ancestor::p/text()"
+                
+                # se esiste un ID di figura, cerca le references usando tale id, altrimenti esegui la query con la lista vuota
+                if(figure_id):
+                    query_references = f"//*[substring(@href, string-length(@href) - string-length('#{figure_id[0]}') + 1) = '#{figure_id[0]}']/ancestor::p" 
+                else:
+                    query_references = f"//*[substring(@href, string-length(@href) - string-length('#{figure_id}') + 1) = '#{figure_id}']/ancestor::p" 
+                #print('query_references: ', query_references)
+            
                 
                 # Eseguire le query e raccogliere i risultati
+                
                 caption_results = execute_xpath_query(file_path, query_caption) or []
                 table_results = execute_xpath_query(file_path, query_table) or []
                 footnote_results = execute_xpath_query(file_path, query_footnotes) or []
-                reference_results = execute_xpath_query(file_path, query_references) or []
+                reference_results_raw = execute_xpath_query(file_path, query_references) or []
+                
+                # conversione delle references in stringhe
+                reference_results = []
+                for elem in reference_results_raw:
+                    # Converti l'elemento in stringa e decodifica se necessario
+                    reference_results.append(etree.tostring(elem, pretty_print=True).decode("utf-8"))
+                
+                #print('reference_results: ', reference_results)
 
                 # Convertire i risultati della tabella in formato HTML
                 if table_results:
