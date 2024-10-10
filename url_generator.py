@@ -14,8 +14,8 @@ def file_name_extractor(folder):
             # Verifica che sia un file e non una directory
             if os.path.isfile(percorso_completo):
                 # Rimuove la parte iniziale 'html-' e la parte finale '.html'
-                if nome.startswith('html-') and nome.endswith('.html'):
-                    nome_modificato = nome[5:-5]
+                if nome.endswith('.html'):
+                    nome_modificato = nome[0:-5]
                     nomi_file.append(nome_modificato)
                 else:
                     nomi_file.append(nome)
