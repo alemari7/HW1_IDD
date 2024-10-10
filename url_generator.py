@@ -14,7 +14,7 @@ def file_name_extractor(folder):
             # Verifica che sia un file e non una directory
             if os.path.isfile(percorso_completo):
                 # Rimuove la parte iniziale 'html-' e la parte finale '.html'
-                if nome.endswith('.html'):
+                if nome.endswith('.json'):
                     nome_modificato = nome[0:-5]
                     nomi_file.append(nome_modificato)
                 else:
@@ -25,7 +25,7 @@ def file_name_extractor(folder):
     return nomi_file
 
 # Percorso della cartella
-path = 'sources'
+path = 'extractions'
 file_list = file_name_extractor(path)
 
 # Output con prefisso e salva su file
