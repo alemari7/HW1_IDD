@@ -1,5 +1,24 @@
 import os
 
+def count_files_in_folder(folder):
+    # Contatore per il numero di file
+    count = 0
+    
+    # Controlla se il percorso è valido
+    if os.path.isdir(folder):
+        # Itera attraverso i file nella folder
+        for nome in os.listdir(folder):
+            # Costruisce il percorso completo del file
+            percorso_completo = os.path.join(folder, nome)
+            
+            # Verifica che sia un file e non una directory
+            if os.path.isfile(percorso_completo):
+                count += 1
+    else:
+        print(f"La cartella '{folder}' non esiste o non è valida.")
+    
+    return count
+
 def file_name_extractor(folder):
     # Lista vuota per contenere i nomi dei file
     nomi_file = []
@@ -41,3 +60,7 @@ with open(output_file, 'w') as f:
 
 # Stampa l'output per conferma
 print(output)
+
+# Conta il numero di file nella cartella
+file_count = count_files_in_folder(path)
+print(f"Numero di file nella cartella '{path}': {file_count}")

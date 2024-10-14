@@ -7,10 +7,9 @@ import re
 os.makedirs("sources", exist_ok=True)
 
 # URL della pagina del topic
-url = 'https://arxiv.org/search/advanced?advanced=&terms-0-operator=AND&terms-0-term=data+cleaning&terms-0-field=all&classification-computer_science=y&classification-physics_archives=all&classification-include_cross_list=include&date-filter_by=all_dates&date-year=&date-from_date=&date-to_date=&date-date_type=submitted_date&abstracts=hide&size=200&order=-announced_date_first'
+file_limit = 200
 
-# Limite di file da scaricare
-file_limit = 8
+url = 'https://arxiv.org/search/advanced?advanced=1&terms-0-term=machine+translation&terms-0-operator=AND&terms-0-field=title&classification-computer_science=y&classification-physics_archives=all&classification-include_cross_list=include&date-filter_by=all_dates&date-year=&date-from_date=&date-to_date=&date-date_type=submitted_date&abstracts=show&size=200&order=&start=600'
 
 # Richiesta HTTP alla pagina principale
 response = requests.get(url)
