@@ -13,10 +13,6 @@ def html_to_text(html_string):
 
     return decoded_text
 
-def html_array_to_text(html_array):
-    # Applica html_to_text a ogni stringa nell'array
-    return [html_to_text(html_string) for html_string in html_array]
-
 # Funzione per eseguire una query XPath su un file XML o HTML
 def execute_xpath_query(file_path, xpath_query):
     try:
