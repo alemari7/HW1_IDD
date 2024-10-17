@@ -401,3 +401,11 @@ https://arxiv.org/html/2404.17968.html
 https://arxiv.org/html/2403.18031.html
 https://arxiv.org/html/2309.07098.html
 </details>
+
+## Stats
+- Numero totale files html: 323​
+- Media tabelle per file: ~14.91​
+- Tabelle senza body: ~25.10%​
+- Tabelle senza paragrafi: ~42.05%​
+- Tabelle senza footnotes: ~87.64%​
+- Media riferimenti per tabelle: ~1.03
