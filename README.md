@@ -8,7 +8,7 @@ The objective of this project is to extract specific data from HTML web pages us
 
 ## Topic Selection
 
-We have chosen the topic of **Artificial Intelligence (AI)** for this project. A total of 323 HTML files have been downloaded from arXiv, focusing on AI-related papers.
+We have chosen the topic of **Machine Translation (MT)** for this project. A total of 323 HTML files have been downloaded from arXiv, focusing on AI-related papers.
 
 ## Data to be Extracted
 
