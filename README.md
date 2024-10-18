@@ -4,11 +4,11 @@ This repository contains the source code for the first homework assignment of th
 
 ## Project Objective
 
-The objective of this project is to extract specific data from HTML web pages using **XPath expressions**. The topic is related to **Data Science**, and the data is extracted from research papers available on the website [arXiv.org](https://arxiv.org/).
+The objective of this project is to extract specific data from HTML web pages using **XPath expressions**. The topic is related to **Computer Science**, and the data is extracted from research papers available on the website [arXiv.org](https://arxiv.org/).
 
 ## Topic Selection
 
-We have chosen the topic of **Machine Translation (MT)** for this project. A total of 323 HTML files have been downloaded from arXiv, focusing on AI-related papers.
+We have chosen the topic of **Machine Translation (MT)** for this project and a total of 323 HTML files have been downloaded from arXiv.
 
 ## Data to be Extracted
 
@@ -29,27 +29,22 @@ The extracted data is stored in a **JSON** file, ensuring that all relevant info
 
 ```json
 {
-  "paper_1": {
-    "title": "Artificial Intelligence Research Paper Title",
-    "tables": [
-      {
-        "table_id": 1,
+    "1": {
+        "table": "<table> ... </table>"
         "caption": "Table 1: Sample Data",
         "footnotes": "Footnote explaining the table",
         "referenced_paragraphs": [
           "This table highlights the key metrics used in AI research..."
-        ]
+          ]
       },
-      {
-        "table_id": 2,
+      "2": {
+        "table": "<table> ... </table>"
         "caption": "Table 2: Model Performance",
         "footnotes": null,
         "referenced_paragraphs": [
           "In Table 2, we compare the performance of various models..."
         ]
       }
-    ]
-  }
 }
 ```
 
@@ -58,7 +53,7 @@ The extracted data is stored in a **JSON** file, ensuring that all relevant info
 This project involves the following steps:
 
 1. **Scraping HTML Files**:
-   The script downloads recent AI-related research papers in HTML format from [arXiv](https://arxiv.org/). The files are stored in a folder called `sources` for further analysis. The scraping process uses **BeautifulSoup** to parse the page and filter the links to the desired HTML files based on specific criteria.
+   The script downloads most relevant research papers in HTML format from [arXiv](https://arxiv.org/). The files are stored in a folder called `sources` for further analysis. The scraping process uses **BeautifulSoup** to parse the page and filter the links to the desired HTML files based on specific criteria.
 
 2. **XPath Extraction**:
    Once the HTML files are downloaded, the next phase involves extracting specific data using **XPath** expressions. The goal is to extract:
@@ -403,9 +398,9 @@ https://arxiv.org/html/2309.07098.html
 </details>
 
 ## Stats
-- Numero totale files html: 323​
-- Media tabelle per file: ~11.17
-- Tabelle senza body: ~25.10%​
-- Tabelle senza paragrafi: ~42.05%​
-- Tabelle senza footnotes: ~87.64%​
-- Media riferimenti per tabelle: ~1.03
+- Total number of HTML files: 323
+- Average tables per file: ~11.17
+- Tables without a body: ~25.10%
+- Tables without paragraphs: ~42.05%
+- Tables without footnotes: ~87.64%
+- Average references per table: ~1.03
