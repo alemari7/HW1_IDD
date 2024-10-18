@@ -20,10 +20,10 @@ def calcola_statistiche_json(cartella):
                     dati = json.load(f)
                     
                     if isinstance(dati, dict):  # Assicuriamoci che il JSON sia un dizionario
-                        totale_elementi += len(dati.keys())  # Conta il numero di episodi (chiavi di primo livello)
+                        totale_elementi += len(dati.keys())  # Conta il numero di chiavi
                         
-                        # Iteriamo sugli episodi e raccogliamo le statistiche
-                        for episodio, contenuti in dati.items():
+                        # Iteriamo sugli id e raccogliamo le statistiche
+                        for tabella, contenuti in dati.items():
                             if 'table' in contenuti:
                                 tabelle_totali += 1  # Conta ogni tabella
                                 
@@ -48,7 +48,7 @@ def calcola_statistiche_json(cartella):
                 print(f"Errore durante la lettura del file {file_name}: {e}")
     
     # Calcolo delle statistiche
-    # Media elementi (numero di episodi per file JSON)
+    # Media elementi (numero di tabelle per file JSON)
     media_elementi = tabelle_con_table_non_null / numero_file if numero_file > 0 else 0
 
     # Percentuale di tabelle con 'table' null
