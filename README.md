@@ -52,21 +52,21 @@ The extracted data is stored in a **JSON** file, ensuring that all relevant info
 
 This project involves the following steps:
 
-1. **Scraping HTML Files**:
-   The script downloads most relevant research papers in HTML format from [arXiv](https://arxiv.org/). The files are stored in a folder called `sources` for further analysis. The scraping process uses **BeautifulSoup** to parse the page and filter the links to the desired HTML files based on specific criteria.
+`./scraper.py`:
+The script downloads most relevant research papers in HTML format from [arXiv](https://arxiv.org/). The files are stored in a folder called `sources` for further analysis. The scraping process uses **BeautifulSoup** to parse the page and filter the links to the desired HTML files based on specific criteria.
 
-2. **XPath Extraction**:
-   Once the HTML files are downloaded, the next phase involves extracting specific data using **XPath** expressions. The goal is to extract:
+`./queryXpath.py`:
+Once the HTML files are downloaded, the next phase involves extracting specific data using **XPath** expressions. The goal is to extract:
    - **Tables**
    - **Captions** associated with the tables
    - **Footnotes** (if any)
    - **Referenced paragraphs** that mention the tables.
 
-3. **Saving Data**:
-   The extracted information is saved in a structured **JSON** file, ensuring easy access and further processing of the data.
+ The extracted information is saved in a structured **JSON** file, ensuring easy access and further processing of the data.
 
-5. **Automation**:
-   The code is designed to automate the entire workflow, from downloading HTML files to extracting and storing relevant data. The script can handle multiple HTML files and be customized to adjust the number of files or different extraction needs.
+`./stats.py`:
+contains python code to generate the statistics needed to evaluate the extraction
+
 
 ## URL List
 
