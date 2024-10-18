@@ -30,7 +30,7 @@ The extracted data is stored in a **JSON** file, ensuring that all relevant info
 ```json
 {
     "1": {
-        "table": "<table> ... </table>"
+        "table": "<table> ... </table>",
         "caption": "Table 1: Sample Data",
         "footnotes": "Footnote explaining the table",
         "referenced_paragraphs": [
@@ -38,7 +38,7 @@ The extracted data is stored in a **JSON** file, ensuring that all relevant info
           ]
       },
       "2": {
-        "table": "<table> ... </table>"
+        "table": "<table> ... </table>",
         "caption": "Table 2: Model Performance",
         "footnotes": null,
         "referenced_paragraphs": [
