@@ -70,7 +70,7 @@ def process_all_html_files():
                 figure_id = execute_xpath_query(file_path, query_figureID) or []
                 
                 query_caption = f'//table[@id="{table_id}"]/ancestor::figure//figcaption/text()'
-                query_table = f'//table[@id="{table_id}"]/ancestor::figure//table'
+                query_table = f'//table[@id="{table_id}"]'
                 query_footnotes_id = f'//table[@id="{table_id}"]/ancestor::figure//cite/a/@href'
                 
                 if(figure_id):

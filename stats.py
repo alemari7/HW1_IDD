@@ -49,7 +49,7 @@ def calcola_statistiche_json(cartella):
     
     # Calcolo delle statistiche
     # Media elementi (numero di episodi per file JSON)
-    media_elementi = totale_elementi / numero_file if numero_file > 0 else 0
+    media_elementi = tabelle_con_table_non_null / numero_file if numero_file > 0 else 0
 
     # Percentuale di tabelle con 'table' null
     percentuale_tabelle_null = (tabelle_null / tabelle_totali * 100) if tabelle_totali > 0 else 0

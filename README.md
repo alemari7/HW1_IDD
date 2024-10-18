@@ -404,7 +404,7 @@ https://arxiv.org/html/2309.07098.html
 
 ## Stats
 - Numero totale files html: 323​
-- Media tabelle per file: ~14.91​
+- Media tabelle per file: ~11.17
 - Tabelle senza body: ~25.10%​
 - Tabelle senza paragrafi: ~42.05%​
 - Tabelle senza footnotes: ~87.64%​
