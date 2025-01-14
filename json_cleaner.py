@@ -20,7 +20,12 @@ def filter_json_by_key(input_file, output_file):
         with open(output_file, 'w', encoding='utf-8') as f:
             json.dump(filtered_data, f, indent=4, ensure_ascii=False)
 
-        print(f"Dati filtrati salvati in {output_file}")
+        # Controlla se il file filtrato è vuoto e rimuovilo
+        if filtered_data == {}:
+            os.remove(output_file)
+            print(f"File vuoto rimosso: {output_file}")
+        else:
+            print(f"Dati filtrati salvati in {output_file}")
     except FileNotFoundError:
         print(f"Errore: Il file {input_file} non esiste.")
     except json.JSONDecodeError:

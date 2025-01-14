@@ -73,7 +73,7 @@ def calcola_statistiche_json(cartella):
     }
 
 # Esegui la funzione specificando il percorso della cartella
-cartella_json = 'extractions'
+cartella_json = 'json_cleaned'
 statistiche = calcola_statistiche_json(cartella_json)
 
 # Stampa tutte le statistiche
