@@ -1,6 +1,6 @@
 # Homework 1 - Data Engineering Course
 
-This repository contains the source code for the first homework assignment of the Data Engineering course. The project was carried out by **Alessio Marinucci** and **Riccardo Felici**.
+This repository contains the source code for the first homework assignment of the Data Engineering course. The project was carried out by **Alessio Marinucci**
 
 ## Project Objective
 
